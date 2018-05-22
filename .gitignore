@@ -1,0 +1,15 @@
+/target/
+/Servers/
+/bin/
+/RemoteSystemsTempFiles/
+/.metadata/
+/.git/
+/.recommenders/
+.project
+/.settings/
+/.gradle/
+.settings
+.classpath
+/.idea/
+*.iml
+target/
