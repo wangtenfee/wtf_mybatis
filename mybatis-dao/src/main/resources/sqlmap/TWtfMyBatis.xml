@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.jr.mybatis.mapper.TWtfMyBatisMapper">
+    <!-- 自定义返回结果集 -->
+    <resultMap id="userMap" type="com.jd.jr.domain.po.TWtfMyBatisPO">
+        <id property="id" column="id" javaType="long"></id>
+        <result property="name" column="name" javaType="java.lang.String"></result>
+        <result property="note" column="note" javaType="java.lang.String"></result>
+        <result property="updateTime" column="updateTime" javaType="java.util.Date"></result>
+        <result property="createTime" column="createTime" javaType="java.util.Date"></result>
+    </resultMap>
+    <!-- 在各种标签中的id属性必须和接口中的方法名相同 ， id属性值必须是唯一的，不能够重复使用。parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型-->
+    <!-- useGeneratedKeys：（ 仅 对 insert 有 用 ） 这 会 告 诉 MyBatis 使 用 JDBC 的getGeneratedKeys
+                方法来取出由数据（比如：像 MySQL 和 SQLServer 这样的数据库管理系统的自动递增字段）内部生成的主键。默认值： false。 -->
+    <!--keyProperty： （仅对 insert有用）标记一个属性， MyBatis 会通过 getGeneratedKeys或者通过 insert 语句的 selectKey 子元素设置它的值。默认：不设置。 -->
+    <!--#{}中的内容，为占位符，当参数为某个JavaBean时，表示放置该Bean对象的属性值  -->
+
+    <!--
+    INSERT INTO `t_mybatis` (`name`, `note`, `updateTime`, `createTime`) VALUES ('wtf3', 'wtf3', '2018-05-22 23:06:58', '2018-05-22 23:07:00');
+    -->
+    <insert id="insertWtfMyBatis" useGeneratedKeys="true" keyProperty="id">
+--         insert into t_user (username,password,account) values (#{username},#{password},#{account})
+        INSERT INTO `t_mybatis` (`name`, `note`, `updateTime`, `createTime`) VALUES (#{name}, #{note}, ${updateTime}, ${createTime})
+    </insert>
+
+    <update id="updateWtfMyBatis" >
+--         update `t_mybatis` set username=#{username},password=#{password},account=#{account} where id=#{id}
+        update `t_mybatis` set name=#{name}, note=#{note}, updateTime=${updateTime}, createTime=${createTime} where id=#{id}
+    </update>
+
+    <delete id="deleteWtfMyBatis" parameterType="int">
+        delete from `t_mybatis` where id=#{id}
+    </delete>
+
+    <select id="selectWtfMyBatisById" parameterType="int" resultMap="userMap">
+        select * from `t_mybatis` where id=#{id}
+    </select>
+
+    <select id="selectAllWtfMyBatis" resultMap="userMap">
+        select * from `t_mybatis`
+    </select>
+
+
+</mapper>

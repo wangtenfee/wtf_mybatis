@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- dataSource数据源,供定时任务使用 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db.jdbc.mysql.driverClassName}"/>
+		<property name="url" value="${db.jdbc.mysql.url}" />
+		<property name="username" value="${db.jdbc.mysql.username}"/>
+		<property name="password" value="${db.jdbc.mysql.password}"/>
+		<property name="initialSize" value="${db.jdbc.mysql.initialSize}"/>
+		<property name="maxActive" value="${db.jdbc.mysql.maxActive}" />
+		<property name="maxIdle" value="${db.jdbc.mysql.maxIdle}"/>
+		<property name="minIdle" value="${db.jdbc.mysql.minIdle}"/>
+		<property name="maxWait" value="${db.jdbc.mysql.maxWait}"/>
+		<property name="timeBetweenEvictionRunsMillis" value="${db.jdbc.mysql.timeBetweenEvictionRunsMillis}"/>
+		<property name="minEvictableIdleTimeMillis" value="${db.jdbc.mysql.minEvictableIdleTimeMillis}"/>
+		<property name="numTestsPerEvictionRun" value="${db.jdbc.mysql.numTestsPerEvictionRun}"/>
+		<!-- 设置自动回收超时连接 -->
+		<property name="removeAbandoned" value="true"/>
+		<!-- 自动回收超时时间(以秒数为单位) -->
+		<property name="removeAbandonedTimeout" value="10"/>
+	</bean>
+	<!-- 配置事务传播特性 -->
+	<bean id="dataSourceTansactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="dataSourceTansactionManager"/>
+	</bean>
+</beans>
