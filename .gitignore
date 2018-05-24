@@ -1,6 +1,7 @@
 /target/
 /Servers/
 /bin/
+/out/
 /RemoteSystemsTempFiles/
 /.metadata/
 /.git/
