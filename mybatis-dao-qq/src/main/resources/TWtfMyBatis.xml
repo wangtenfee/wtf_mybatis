@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.jr.wtf.mapper.TWtfMyBatisMapper">
+
+    <select id="selectTWtfMyBatis" resultType="com.jd.jr.domain.po.TWtfMyBatisPO">
+        select * from t_mybatis where id = #{id}
+    </select>
+
+    <!--
+        public void insertTWtfMyBatis(TWtfMyBatisPO tWtfMyBatisPO) throws Exception;
+
+    public void updateTWtfMyBatis(TWtfMyBatisPO tWtfMyBatisPO) throws Exception;
+
+    public void deleteTWtfMyBatis(long id) throws Exception;
+    -->
+    <insert id="insertTWtfMyBatis" parameterType="com.jd.jr.domain.po.TWtfMyBatisPO">
+        INSERT INTO `t_mybatis` (`name`, `note`, `updateTime`, `createTime`)
+        VALUES (#{name}, #{note}, now(), now())
+    </insert>
+
+    <!--         UPDATE `t_mybatis` SET `name`=#{name}, `note`=#{note} , `updateTime`=now() WHERE  `id`=#{id}-->
+    <update id="updateTWtfMyBatis" parameterType="com.jd.jr.domain.po.TWtfMyBatisPO">
+        UPDATE `t_mybatis` SET `name`=#{name}, `note`=#{note} , `updateTime`=#{updateTime} WHERE  `id`=#{id}
+    </update>
+
+
+</mapper>
