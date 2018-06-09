@@ -17,6 +17,7 @@
         <module>mybatis-rpc</module>
         <module>mybatis-common</module>
         <module>mybatis-dao-qq</module>
+        <module>mybatis-dao-autogenerate</module>
     </modules>
 
     <properties>
